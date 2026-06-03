@@ -1,38 +1,97 @@
-Sistema Mecatrónico de Bajo Costo para Laboratorio Remoto RaspyLab
 
-Descripción
+# Sistema Mecatrónico de Bajo Costo para Laboratorio Remoto
 
-Este proyecto implementa un sistema mecatrónico controlado mediante Raspberry Pi para el transporte automatizado de una pelota de ping pong utilizando un mecanismo de succión y posicionamiento cartesiano X-Z.
+## Descripción General
 
-El sistema fue desarrollado como apoyo al laboratorio remoto RaspyLab para fortalecer el aprendizaje práctico de estudiantes de Tecnología en Electrónica.
+Este proyecto corresponde al desarrollo de un sistema mecatrónico de bajo costo orientado a laboratorios remotos de programación y automatización. El sistema permite manipular una pelota de ping pong mediante una bomba de succión controlada electrónicamente y un mecanismo de posicionamiento cartesiano de dos ejes (X-Z).
 
-Componentes principales
+La plataforma utiliza una Raspberry Pi 4 como unidad principal de procesamiento y control, encargada de ejecutar scripts desarrollados en Python para coordinar el funcionamiento de los diferentes actuadores, sensores y módulos electrónicos.
 
-Raspberry Pi 4
+El objetivo principal es proporcionar una herramienta educativa que permita comprender conceptos relacionados con programación, control de motores, electrónica digital y sistemas mecatrónicos mediante una experiencia práctica y remota.
 
-Motor paso a paso lineal
+---
 
-Driver EasyDriver A3967
+## Arquitectura del Sistema
 
-Motorreductor DC
+El sistema está compuesto por cuatro módulos principales:
 
-Módulo L298N
+### Unidad de Control
 
-PCB de control para bomba de succión
+La Raspberry Pi 4 ejecuta los scripts de control y administra las señales de entrada y salida necesarias para el funcionamiento del sistema.
 
-Sensor final de carrera
+### Sistema de Posicionamiento Horizontal (Eje X)
 
-Cámara Raspberry Pi
+Implementado mediante un motor paso a paso lineal controlado por el driver EasyDriver A3967. Este mecanismo permite desplazar la bomba de succión entre diferentes posiciones de trabajo.
 
-Funciones
+### Sistema de Posicionamiento Vertical (Eje Z)
 
-Movimiento horizontal.
+Implementado mediante un motorreductor DC controlado por un módulo L298N. Su función es acercar o alejar la bomba de la superficie de trabajo.
 
-Movimiento vertical.
+### Sistema de Succión
 
-Activación de bomba de vacío.
+Compuesto por una bomba de vacío controlada mediante una tarjeta PCB diseñada específicamente para el proyecto. El accionamiento se realiza mediante un relé controlado desde la Raspberry Pi.
 
-Retorno automático mediante final de carrera.
+---
 
-Monitoreo remoto mediante cámara.
+## Lógica de Funcionamiento
 
+La operación completa del sistema se divide en las siguientes etapas:
+
+1. Inicialización de GPIO y módulos de control.
+2. Desplazamiento horizontal hacia la posición de captura.
+3. Descenso vertical de la bomba.
+4. Activación de la bomba de succión.
+5. Elevación de la pelota.
+6. Transporte horizontal hacia la posición destino.
+7. Descenso para liberar el objeto.
+8. Desactivación de la bomba.
+9. Retorno a la posición inicial.
+10. Detección del final de carrera.
+11. Reinicio del ciclo.
+
+---
+
+## Módulos de Software
+
+El desarrollo del sistema se realizó mediante scripts independientes para facilitar la validación individual de cada componente.
+
+### Control de Bomba de Succión
+
+Permite activar y desactivar el relé encargado de energizar la bomba mediante señales digitales provenientes de la Raspberry Pi.
+
+### Control del Motor Paso a Paso
+
+Genera las señales STEP y DIR necesarias para controlar el desplazamiento horizontal mediante el driver EasyDriver.
+
+### Control del Motorreductor
+
+Gestiona el movimiento ascendente y descendente mediante el puente H L298N.
+
+### Lectura del Final de Carrera
+
+Detecta la posición de referencia del sistema para garantizar ciclos repetitivos y seguros.
+
+### Integración General
+
+Coordina el funcionamiento de todos los módulos anteriores para ejecutar la secuencia completa de transporte.
+
+---
+
+## Características Técnicas
+
+* Lenguaje de programación: Python.
+* Sistema operativo: Raspberry Pi OS (Raspbian).
+* Plataforma de desarrollo: Thonny IDE.
+* Control mediante GPIO.
+* Sistema de dos grados de libertad (X-Z).
+* Supervisión visual mediante cámara Raspberry Pi.
+* Arquitectura modular y escalable.
+* Diseño orientado a laboratorios remotos educativos.
+
+---
+
+## Resultados
+
+Las pruebas realizadas permitieron validar el funcionamiento individual de cada módulo y posteriormente la integración completa del sistema. Se verificó el control adecuado de la bomba de succión, el desplazamiento horizontal mediante motor paso a paso, el movimiento vertical mediante motorreductor y la detección correcta del sensor de final de carrera.
+
+La integración de todos los componentes permitió ejecutar ciclos completos de captura, transporte y liberación de objetos de manera automática y repetitiva.
