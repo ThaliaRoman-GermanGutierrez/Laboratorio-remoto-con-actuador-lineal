@@ -6,6 +6,7 @@ Este proyecto implementa un sistema mecatrónico controlado mediante Raspberry P
 El sistema fue desarrollado como apoyo al laboratorio remoto RaspyLab para fortalecer el aprendizaje práctico de estudiantes de Tecnología en Electrónica.
 
 Componentes principales
+
 Raspberry Pi 4
 Motor paso a paso lineal
 Driver EasyDriver A3967
