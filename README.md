@@ -1,4 +1,5 @@
 Sistema Mecatrónico de Bajo Costo para Laboratorio Remoto RaspyLab
+
 Descripción
 
 Este proyecto implementa un sistema mecatrónico controlado mediante Raspberry Pi para el transporte automatizado de una pelota de ping pong utilizando un mecanismo de succión y posicionamiento cartesiano X-Z.
